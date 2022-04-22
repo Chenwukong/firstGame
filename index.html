@@ -487,7 +487,7 @@
 </head>
 
 <body>
-  
+
     <div class="f11">
         按下键盘F11开始游戏 <button id="enter">或者按此按钮进入</button><br> PS:请调低音量 <br> 按空格普通攻击，按F释放技能 <br> 
 
@@ -974,7 +974,145 @@
                     timer = setTimeout(function() {
                         flag = true;
                     }, 40)
-                } 
+
+                } else if (e.key === "F" || e.key === "f") {
+
+                    if (knight.classList.contains("abilities")) {
+                        return
+                    }
+                    abilities()
+                    calcEnemyHPwidth()
+                    MonsterDead()
+
+                } else if (e.key === "RASDF" || e.key === "rASDF") {
+                    flag2 = false
+                    knight.style.display = "none"
+                    const ultimates = document.createElement("div")
+                    let showStatus = document.querySelector(".showStatus")
+                    const ultimate2s = document.createElement("div")
+                    const ultimate3s = document.createElement("div")
+                    const ultimate4s = document.createElement("div")
+                    const ultimate5s = document.createElement("div")
+
+                    function oneTwoSound() {
+                        ultimates.classList.add("ultimate1")
+                        showStatus.appendChild(ultimates)
+                        mulSound1()
+                    }
+
+                    function threeFourSound() {
+                        ultimate2s.classList.add("ultimate2")
+                        showStatus.appendChild(ultimate2s)
+                        mulSound2()
+                    }
+
+                    function fiveSixSound() {
+                        ultimate3s.classList.add("ultimate3")
+                        showStatus.appendChild(ultimate3s)
+                        mulSound3()
+                    }
+
+                    function sevenEightSound() {
+                        ultimate4s.classList.add("ultimate4")
+                        showStatus.appendChild(ultimate4s)
+                        mulSound4()
+                    }
+
+
+                    function nineTenSound() {
+                        ultimate5s.classList.add("ultimate5")
+                        showStatus.appendChild(ultimate5s)
+                        mulSound5()
+                    }
+
+
+
+
+                    setTimeout(oneTwoSound, 100)
+                    setTimeout(threeFourSound, 300)
+                    setTimeout(fiveSixSound, 500)
+                    setTimeout(sevenEightSound, 700)
+                    setTimeout(nineTenSound, 900)
+                        //1_2
+                    function mulSound1() {
+
+                        document.querySelector("#auto").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto2").play()
+                            Remove1()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove1() {
+                        ultimates.style.display = "none"
+                    }
+
+                    //3_4
+                    function mulSound2() {
+                        document.querySelector("#auto3").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto4").play()
+                            Remove2()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove2() {
+                        ultimate2s.style.display = "none"
+                    }
+
+                    //5_6
+                    function mulSound3() {
+                        document.querySelector("#auto5").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto6").play()
+                            Remove3()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove3() {
+                        ultimate3s.style.display = "none"
+                    }
+                    //7_8
+                    function mulSound4() {
+                        document.querySelector("#auto7").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto8").play()
+                            Remove4()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove4() {
+                        ultimate4s.style.display = "none"
+                    }
+                    //9_10
+                    function mulSound5() {
+                        document.querySelector("#auto9").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto10").play()
+                            knight.style.display = "block"
+                            Remove5()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove5() {
+                        ultimate5s.style.display = "none"
+                        monsters[roundNum].hp = 0
+                        flag2 = true
+                        MonsterDead()
+                        calcEnemyHPwidth()
+
+                    }
+
                 }
             }
         })
