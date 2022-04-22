@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            height: 100%;
+            background-image: url("./bgi.webp");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        @keyframes knightMove {
+            0% {
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translateX(1200px) scale(2);
+                background-position: -385px 170px;
+            }
+        }
+        
+        @keyframes BunMove {
+            0% {}
+            13% {
+                background-image: url(./Bun/idle/frame-1.png);
+            }
+            26% {
+                background-image: url(./Bun/idle/frame-2.png);
+            }
+            39% {
+                background-image: url(./Bun/idle/frame-3.png);
+            }
+            52% {
+                background-image: url(./Bun/idle/frame-4.png);
+            }
+            65% {
+                background-image: url(./Bun/idle/frame-5.png);
+            }
+            78% {
+                background-image: url(./Bun/idle/frame-6.png);
+            }
+            90% {
+                background-image: url(./Bun/idle/frame-7.png);
+            }
+            100% {
+                background-image: url(./Bun/idle/frame-8.png);
+            }
+        }
+        
+        .bun {
+            animation: BunMove 1s steps(8) infinite;
+            width: 400px;
+            height: 400px;
+            background-image: url(./Bun/idle/frame-1.png);
+            background-size: 100% 100%;
+        }
+        
+        @keyframes beanMove {
+            0% {}
+            16% {
+                background-image: url(./GreenBean/1.png);
+            }
+            32% {
+                background-image: url(./GreenBean/2.png);
+            }
+            48% {
+                background-image: url(./GreenBean/3.png);
+            }
+            64% {
+                background-image: url(./GreenBean/4.png);
+            }
+            80% {
+                background-image: url(./GreenBean/5.png);
+            }
+            100% {
+                background-image: url(./GreenBean/6.png);
+            }
+        }
+        
+        .greenBean {
+            animation: beanMove 1s steps(6) infinite;
+            width: 400px;
+            height: 400px;
+            background-size: 100% 100%;
+            background-image: url(./GreenBean/1.png)
+        }
+        
+        @keyframes oneEyeMove {
+            0% {
+                background-image: url(./oneEye/Idle/frame-1.png);
+            }
+            25% {
+                background-image: url(./oneEye/Idle/frame-2.png);
+            }
+            50% {
+                background-image: url(./oneEye/Idle/frame-1.png);
+            }
+            75% {
+                background-image: url(./oneEye/Idle/frame-2.png);
+            }
+            100% {
+                background-image: url(./oneEye/Idle/frame-1.png);
+            }
+        }
+        
+        .oneEye {
+            animation: oneEyeMove 0.5s ease infinite;
+            width: 400px;
+            height: 400px;
+            background-size: 100% 100%;
+            background-image: url(./oneEye/Idle/frame-1.png)
+        }
+        
+        @keyframes landMonMove {
+            0% {
+                background-image: url(./landMonster/standing/frame-1.png)
+            }
+            25% {
+                background-image: url(./landMonster/standing/frame-2.png)
+            }
+            50% {
+                background-image: url(./landMonster/standing/frame-1.png)
+            }
+            75% {
+                background-image: url(./landMonster/standing/frame-2.png)
+            }
+            100% {
+                background-image: url(./landMonster/standing/frame-1.png)
+            }
+        }
+        
+        .landMon {
+            animation: landMonMove 0.5s ease infinite;
+            width: 400px;
+            height: 400px;
+            background-size: 100% 100%;
+            background-image: url(./landMonster/standing/frame-1.png)
+        }
+        
+        @keyframes bossMove {
+            0% {
+                background-position: 0px 500px;
+            }
+            100% {
+                background-position: -1152px 500px;
+            }
+        }
+        
+        .boss {
+            top: -200px;
+            width: 128px;
+            height: 130px;
+            animation: bossMove 1s steps(9) infinite;
+            background-image: url(./boss.png);
+            background-position: 0px 500px;
+            transform: scale(4);
+        }
+        
+        .knight {
+            position: absolute;
+            bottom: 50px;
+            left: 20%;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        .abilities {
+            animation: knightMove 0.35s steps(4);
+        }
+        
+        .enemy {
+            position: absolute;
+            bottom: 0px;
+            right: 15%;
+        }
+        
+        .f11 {
+            position: absolute;
+            top: 0;
+            text-align: center;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        
+        .arena {
+            position: relative;
+            top: 400px;
+            left: 10%;
+            width: 80%;
+            height: 700px;
+        }
+        
+        .hp {
+            font-size: 30px;
+            margin-left: 150px;
+        }
+        
+        .round {
+            position: absolute;
+            text-align: center;
+            line-height: 100px;
+            color: red;
+            left: 40%;
+            font-size: 50px;
+            width: 200px;
+            height: 100px;
+            background-image: url(./board.webp);
+            background-size: 100% 100%;
+        }
+        
+        .health {
+            position: absolute;
+            top: -20px;
+            border: 1px solid black;
+            width: 100px;
+            height: 20px;
+            font-style: 20px;
+        }
+        
+        .healthBar {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+        
+        .enemyHealth {
+            position: absolute;
+            top: -200px;
+            left: -150px;
+            border: 1px solid black;
+            width: 400px;
+            height: 40px;
+            font-style: 20px;
+        }
+        
+        .enemyHealthBar {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+        
+        .shop {
+            position: absolute;
+            background-color: rgba(42, 65, 66, 0.5);
+            width: 500px;
+            height: 250px;
+            left: 36%;
+            top: 10%;
+        }
+        
+        ul li {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        ul li span {
+            margin: 20px
+        }
+        
+        ul li span button {
+            cursor: pointer;
+            width: 40px;
+            margin-left: 10px;
+        }
+        
+        .autoEffect {
+            position: absolute;
+            left: -100px;
+            top: 100px;
+            width: 700px;
+            height: 200px;
+            z-index: 999999;
+            background-size: 100% 100%;
+        }
+        
+        @keyframes goldMove {
+            0% {}
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+        
+        .goldHide {
+            animation: goldMove 1s ease infinite;
+        }
+        
+        .gold {
+            display: none;
+            position: absolute;
+            bottom: 250px;
+            left: 20%;
+            width: 150px;
+            height: 150px;
+            z-index: 99;
+            background-image: url(./gold.png);
+            background-size: 100% 100%;
+        }
+        
+        @keyframes damageMove {
+            0% {}
+            100% {
+                transform: translateY(-300px);
+                opacity: 0;
+            }
+        }
+        
+        .damage {
+            animation: damageMove 1s ease;
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            left: -200px;
+            top: -170px;
+        }
+        
+        @keyframes ultimateMove1 {
+            0% {
+                transform: scale(2);
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translate(800px, 750px) scale(2) rotate(80deg);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .ultimate1 {
+            position: absolute;
+            top: -100px;
+            animation: ultimateMove1 0.1s steps(4) infinite;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        @keyframes ultimateMove2 {
+            0% {
+                transform: scale(2);
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translate(950px, -800px) scale(2) rotate(-50deg);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .ultimate2 {
+            position: absolute;
+            top: 400px;
+            left: -200px;
+            animation: ultimateMove2 0.1s steps(4) infinite;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        @keyframes ultimateMove3 {
+            0% {
+                transform: scale(2);
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translateX(950px) scale(2);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .ultimate3 {
+            position: absolute;
+            top: 150px;
+            left: -200px;
+            animation: ultimateMove3 0.1s steps(4) infinite;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        @keyframes ultimateMove4 {
+            0% {
+                transform: rotate(180deg) scale(2);
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translateX(-950px) scale(2) rotate(180deg);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .ultimate4 {
+            position: absolute;
+            top: 150px;
+            left: 600px;
+            animation: ultimateMove4 0.1s steps(4) infinite;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        @keyframes ultimateMove5 {
+            0% {
+                transform: rotate(-90deg) scale(2);
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: translateY(-950px) scale(2) rotate(-90deg);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .ultimate5 {
+            position: absolute;
+            top: 500px;
+            left: 150px;
+            animation: ultimateMove5 0.1s steps(4) infinite;
+            transform: scale(2);
+            width: 100px;
+            height: 77px;
+            background-image: url(./knight.png);
+            background-position: 0 170px;
+        }
+        
+        .enemyName {
+            position: absolute;
+            color: gold;
+            right: 500px;
+        }
+        
+        @keyframes autoShowEffectMove {
+            0% {
+                background-position: 0px 170px;
+            }
+            100% {
+                transform: scale(2);
+                background-position: -385px 170px;
+            }
+        }
+        
+        .autoShowEffect {
+            animation: autoShowEffectMove 0.1s steps(4);
+        }
+        
+        .cd {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: 100px;
+        }
+        
+        .hidden {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 300px;
+            height: 200px;
+            color: rgb(33, 30, 30);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hidden">
+        按R放大，直接秒杀一切怪物
+    </div>
+    <div class="f11">
+        按下键盘F11开始游戏 <button id="enter">或者按此按钮进入</button><br> PS:请调低音量 <br> 按空格普通攻击，按F释放技能 <br> 在背景图中有彩蛋文字，找到即可释放终结技
+
+    </div>
+
+    <audio id="easyBgm" src="./home.mp3" loop></audio>
+    <audio id="auto" src="./samurai.mp3"></audio>
+    <audio id="auto2" src="./samurai.mp3"></audio>
+    <audio id="auto3" src="./samurai.mp3"></audio>
+    <audio id="auto4" src="./samurai.mp3"></audio>
+    <audio id="auto5" src="./samurai.mp3"></audio>
+    <audio id="auto6" src="./samurai.mp3"></audio>
+    <audio id="auto7" src="./samurai.mp3"></audio>
+    <audio id="auto8" src="./samurai.mp3"></audio>
+    <audio id="auto9" src="./samurai.mp3"></audio>
+    <audio id="auto10" src="./samurai.mp3"></audio>
+    <audio id="sword" src="./mixkit-dagger-woosh-1487.wav"></audio>
+    <audio src="./Colossal Boss Battle Theme/Colossal Boss Battle Theme/Blackmoor Colossus Loop.wav" id="final"></audio>
+    <audio src="./coinsplash.ogg" id="coin"></audio>
+    <audio src="./Superhero_pack/SuperHero_original.ogg" id="secondBgm" loop></audio>
+    <div class="shop">
+        <ul>
+            <li style="margin-left:20px;color:gold" id="goldAmount">总金币：居然是零耶</li>
+            <li>
+                <span style="color:red">力量:  <span class="strength"></span> <button>+</button></span> <span style="color:gold">+30/10 Golds</span>
+            </li>
+            <li>
+
+                <span style="color:green">血量:  <span class="healthStatus"></span> <button>+</button></span> <span style="color:gold">+100/10 Golds</span>
+
+            </li>
+            <li>
+                <span style="color:yellow">护甲:  <span class="armor"></span> <button>+</button></span> <span style="color:gold">+40/100 Golds</span>
+            </li>
+            <li>
+                <span style="color:purple">暴击:  <span class="crit"></span> <button>+</button></span> <span style="color:gold">+10%/10 Golds</span>
+            </li>
+        </ul>
+    </div>
+    <div class="arena">
+        <div class="gold"></div>
+
+        <div class="knight">
+            <div class="cd">F技能冷却：</div>
+            <div class="health">
+                <div class="healthBar">
+                    HP: 100
+                </div>
+            </div>
+        </div>
+        <div class="round">第1关</div>
+
+        <div>
+            <h1 class="enemyName">黄豆</h1>
+            <div class="enemy">
+
+                <div class="showStatus">
+                    <div class="autoEffect">
+
+                    </div>
+
+                    <div class="hp enemyHealth">
+                        <div class="enemyHealthBar">
+                            HP:2000
+                        </div>
+
+                    </div>
+
+                    <div class="bun">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let f11 = document.querySelector(".f11")
+        let enter = document.querySelector("#enter")
+        enter.onclick = function() {
+            f11.style.display = "none"
+            open = true
+            document.querySelector("#easyBgm").play()
+        }
+
+        let enemy = document.querySelector(".enemy")
+        let hp = document.querySelector(".hp")
+        let round = document.querySelector(".round")
+        let knight = document.querySelector(".knight")
+        let roundNum = 0
+        let bun = document.querySelector(".bun")
+        let health = document.querySelector(".healthBar")
+        let strength = document.querySelector(".strength")
+        let healthStatus = document.querySelector(".healthStatus")
+        let armor = document.querySelector(".armor")
+        let crit = document.querySelector(".crit")
+        let upGrade = document.querySelectorAll("li button")
+        let enemyHealth = document.querySelector(".enemyHealthBar")
+        let html = document.querySelector("html")
+        let knightStatus = {
+            name: "主人公",
+            iniHP: 100,
+            hp: 100,
+            armor: 0,
+            gold: 0,
+            strength: 50,
+            critRate: 10,
+            crit: 9
+        }
+        let monsters = [{
+            name: "黄豆",
+            hp: 2000,
+            iniHP: 2000,
+            strength: 5,
+            gold: 20
+        }, {
+            name: "绿豆",
+            hp: 4000,
+            iniHP: 4000,
+            strength: 30,
+            gold: 70
+        }, {
+            name: "独眼",
+            hp: 8000,
+            iniHP: 8000,
+            strength: 50,
+            gold: 100
+        }, {
+            name: "红魔",
+            iniHP: 20000,
+            hp: 20000,
+            strength: 100,
+            gold: 150
+        }, {
+            name: "血牛",
+            iniHP: 400000,
+            hp: 400000,
+            strength: 500,
+            gold: 9999999
+        }]
+        strength.innerHTML = knightStatus.strength
+        healthStatus.innerHTML = knightStatus.hp
+        armor.innerHTML = knightStatus.armor
+        crit.innerHTML = "10%"
+        let goldAmount = document.querySelector("#goldAmount")
+            //设置升级属性
+        for (let i = 0; i < upGrade.length; i++) {
+            upGrade[i].onclick = function() {
+                switch (i) {
+                    case 0:
+                        if (knightStatus.gold >= 10) {
+                            knightStatus.strength += 30;
+                            knightStatus.gold -= 10
+                            strength.innerHTML = knightStatus.strength
+
+                        }
+                        break;
+                    case 1:
+                        if (knightStatus.gold >= 10) {
+                            knightStatus.hp += 100
+                            knightStatus.iniHP += 100
+                            knightStatus.gold -= 10
+                            healthStatus.innerHTML = knightStatus.iniHP
+                            console.log(knightStatus.hp);
+                            health.innerHTML = `HP:${knightStatus.hp}`
+                        }
+
+                        break;
+                    case 2:
+                        if (knightStatus.gold >= 100) {
+                            knightStatus.armor += 40;
+                            knightStatus.gold -= 100
+                            armor.innerHTML = knightStatus.armor
+                        }
+                        break;
+                    case 3:
+                        if (knightStatus.gold >= 10) {
+                            if (knightStatus.critRate < 100) {
+                                knightStatus.crit -= 1;
+                                knightStatus.critRate += 10
+                                knightStatus.gold -= 10
+
+                            } else {
+                                return
+                            }
+                            crit.innerHTML = `${knightStatus.critRate}%`
+                        }
+                        break;
+                }
+                goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+            }
+        }
+        // 复活，让血量和精灵图复原
+        function Revive() {
+            knightStatus.hp = knightStatus.iniHP;
+            health.innerHTML = `HP:${knightStatus.hp}`
+            monsters[0].hp = 2000,
+                monsters[1].hp = 4000,
+                monsters[2].hp = 8000,
+                monsters[3].hp = 20000,
+                monsters[4].hp = 200000,
+                enemyHealth.innerHTML = `HP:${monsters[0].hp}`
+            round.innerHTML = `第${roundNum + 1}关`
+            switch (roundNum) {
+                case 0:
+                    bun.className = "bun"
+                    break;
+                case 1:
+                    bun.className = "greenBean"
+                    break;
+            }
+
+            html.style.backgroundImage = "url('./bgi.webp')";
+            document.querySelector("#easyBgm").play()
+            document.querySelector("#secondBgm").pause()
+            document.querySelector("#final").pause()
+
+            // monster[4].hp
+        }
+        // 计算当前血条长度
+        function calcHPwidth() {
+
+            let newWidth = knightStatus.hp / knightStatus.iniHP * 100
+            if (newWidth <= 0) {
+                newWidth = 100
+            }
+            health.style.width = `${newWidth}%`
+        }
+        //计算怪物当前血条长度
+        function calcEnemyHPwidth() {
+            let newEnemyWidth = monsters[roundNum].hp / monsters[roundNum].iniHP * 100
+
+            if (newEnemyWidth <= 0) {
+                newEnemyWidth = 100
+            }
+            enemyHealth.style.width = `${newEnemyWidth}% `
+        }
+        // 设置怪物攻击
+        function monsterAttack() {
+
+            if (monsters[roundNum].strength - knightStatus.armor <= 0) {
+                knightStatus.hp -= 1
+            } else {
+                knightStatus.hp -= (monsters[roundNum].strength - knightStatus.armor)
+            }
+
+            health.innerHTML = `HP:${knightStatus.hp}`
+            calcHPwidth()
+            if (knightStatus.hp <= 0) {
+                roundNum = 0
+                Revive()
+
+            }
+        }
+
+        // 设置怪物攻击频率
+        setInterval(monsterAttack, 2000)
+            //主角攻击
+        let autoRound = 1
+        let autoEffect = document.querySelector(".autoEffect")
+        let autoShowEffect = document.querySelector(".autoShowEffect")
+
+        function removeAutoShow() {
+            knight.classList.remove("autoShowEffect")
+        }
+
+        function hideEffect() {
+            autoEffect.style.display = "none"
+        }
+
+        function showEffect() {
+            autoEffect.style.display = "block"
+        }
+
+        function knightAttack() {
+            document.querySelector("#sword").play()
+            knight.classList.add("autoShowEffect")
+            setTimeout(removeAutoShow, 100)
+            switch (autoRound) {
+                case 1:
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/1.png')";
+                    autoRound++
+                    setTimeout(hideEffect, 100)
+                    break;
+                case 2:
+
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/2.png')";
+                    autoRound++
+                    setTimeout(hideEffect, 100)
+                    break;
+                case 3:
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/3.png')";
+                    autoRound++
+                    setTimeout(hideEffect, 100)
+                    break;
+                case 4:
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/4.png')";
+                    autoRound++
+                    setTimeout(hideEffect, 100)
+                    break;
+                case 5:
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/5.png')";
+                    autoRound++
+                    setTimeout(hideEffect, 100)
+                    break;
+                case 6:
+                    showEffect()
+                    autoEffect.style.backgroundImage = "url('./auto/6.png')";
+                    autoRound = 1
+                    setTimeout(hideEffect, 100)
+                    break;
+            }
+
+
+            function removeChild() {
+                showStatus.removeChild(showStatus.lastChild)
+            }
+            let showStatus = document.querySelector(".showStatus")
+            console.log((Math.random() * knightStatus.crit).toFixed(0));
+            if (((Math.random() * knightStatus.crit).toFixed(0)) === "0") {
+
+                monsters[roundNum].hp -= knightStatus.strength * 4
+                const dmg = document.createElement('div');
+                dmg.innerHTML = `暴击：${knightStatus.strength * 4}`
+                dmg.classList.add("damage")
+                dmg.style.fontSize = "60px"
+                showStatus.appendChild(dmg)
+                setTimeout(removeChild, 1000)
+            } else {
+                monsters[roundNum].hp -= knightStatus.strength
+
+                const dmg = document.createElement('div');
+                dmg.innerHTML = knightStatus.strength
+                dmg.classList.add("damage")
+                showStatus.appendChild(dmg)
+                setTimeout(removeChild, 1000)
+            }
+
+            enemyHealth.innerHTML = `HP: ${monsters[roundNum].hp }`
+
+
+
+        }
+
+
+        let gold = document.querySelector(".gold")
+            //怪物死亡，切换精灵图到下一个
+        function goldRemove() {
+
+            gold.classList.remove("goldHide")
+            gold.style.display = "none"
+
+
+        }
+        let enemyName = document.querySelector(".enemyName")
+
+        function MonsterDead() {
+
+            if (monsters[roundNum].hp <= 0) {
+
+                if (roundNum < 4) {
+                    roundNum += 1
+                    document.querySelector("#coin").play()
+                    enemyHealth.innerHTML = `HP: ${monsters[roundNum].hp}`
+                    round.innerHTML = `第${roundNum + 1}关`
+
+                    switch (roundNum) {
+                        case 0:
+                            knightStatus.gold += monsters[roundNum - 1].gold;
+                            goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+                            break;
+                        case 1:
+                            bun.className = "greenBean"
+                            gold.style.display = "block"
+                            gold.classList.add("goldHide")
+                            knightStatus.gold += monsters[roundNum - 1].gold;
+                            goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+                            enemyName.innerHTML = "绿豆"
+                            setTimeout(goldRemove, 1000)
+                            break;
+                        case 2:
+                            bun.className = "oneEye"
+                            gold.style.display = "block"
+                            gold.classList.add("goldHide")
+                            knightStatus.gold += monsters[roundNum - 1].gold;
+                            goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+                            document.querySelector("#easyBgm").pause()
+                            document.querySelector("#secondBgm").play()
+                            enemyName.innerHTML = "蓝豆"
+                            setTimeout(goldRemove, 1000)
+                            break;
+                        case 3:
+                            bun.className = "landMon"
+                            html.style.backgroundImage = "url(./fireBgi.png)"
+                            gold.style.display = "block"
+                            knightStatus.gold += monsters[roundNum - 1].gold;
+                            goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+                            enemyName.innerHTML = "红魔"
+                            gold.classList.add("goldHide")
+                            setTimeout(goldRemove, 1000)
+                            break;
+                        case 4:
+                            bun.className = "boss"
+                            html.style.backgroundImage = "url(./final.png)"
+                            knightStatus.gold += monsters[roundNum - 1].gold;
+                            goldAmount.innerHTML = `总金币：${knightStatus.gold}`
+
+                            document.querySelector("#secondBgm").pause()
+                            document.querySelector("#final").play()
+                            gold.style.display = "block"
+                            enemyName.innerHTML = "血牛"
+                            gold.classList.add("goldHide")
+                            setTimeout(goldRemove, 1000)
+                            break;
+                    }
+                } else {
+                    html.style.display = "none"
+                    document.querySelector("#final").pause()
+                    alert("恭喜勇者打败了魔王！")
+                }
+            }
+        }
+
+        function abilities() {
+            let cd = document.querySelector(".cd")
+            let times = 5
+            let flag = 0
+
+            function minusCD() {
+                times -= 1
+                cd.innerHTML = `F技能冷却: ${times}`
+                if (times <= 0) {
+                    flag = 1
+                    if (flag === 1) {
+                        clearInterval(clear)
+                    }
+                    times = 5
+                }
+            }
+
+            let clear = setInterval(minusCD, 1000)
+            knight.classList.add("abilities")
+            document.querySelector("#auto").play()
+
+            function remove() {
+                knight.classList.remove("abilities")
+            }
+            setTimeout(remove, 5000)
+            monsters[roundNum].hp -= (knightStatus.strength * 15);
+            enemyHealth.innerHTML = `HP: ${monsters[roundNum].hp}`
+
+        }
+
+
+        let flag = true;
+        let timer;
+
+        let open = false
+        let flag2 = true
+        document.addEventListener("keydown", function(e) {
+
+            if (e.key === "F11") {
+                f11.style.display = "none"
+                open = true
+                document.querySelector("#easyBgm").play()
+            }
+
+            if (open === true) {
+                if (e.key === " ") {
+                    clearTimeout(timer)
+                    if (flag && flag2 == true) {
+                        flag = false;
+                        knightAttack()
+                        calcEnemyHPwidth()
+                        MonsterDead()
+
+                    }
+                    timer = setTimeout(function() {
+                        flag = true;
+                    }, 40)
+
+                } else if (e.key === "F" || e.key === "f") {
+
+                    if (knight.classList.contains("abilities")) {
+                        return
+                    }
+                    abilities()
+                    calcEnemyHPwidth()
+                    MonsterDead()
+
+                } else if (e.key === "R" || e.key === "r") {
+                    flag2 = false
+                    knight.style.display = "none"
+                    const ultimates = document.createElement("div")
+                    let showStatus = document.querySelector(".showStatus")
+                    const ultimate2s = document.createElement("div")
+                    const ultimate3s = document.createElement("div")
+                    const ultimate4s = document.createElement("div")
+                    const ultimate5s = document.createElement("div")
+
+                    function oneTwoSound() {
+                        ultimates.classList.add("ultimate1")
+                        showStatus.appendChild(ultimates)
+                        mulSound1()
+                    }
+
+                    function threeFourSound() {
+                        ultimate2s.classList.add("ultimate2")
+                        showStatus.appendChild(ultimate2s)
+                        mulSound2()
+                    }
+
+                    function fiveSixSound() {
+                        ultimate3s.classList.add("ultimate3")
+                        showStatus.appendChild(ultimate3s)
+                        mulSound3()
+                    }
+
+                    function sevenEightSound() {
+                        ultimate4s.classList.add("ultimate4")
+                        showStatus.appendChild(ultimate4s)
+                        mulSound4()
+                    }
+
+
+                    function nineTenSound() {
+                        ultimate5s.classList.add("ultimate5")
+                        showStatus.appendChild(ultimate5s)
+                        mulSound5()
+                    }
+
+
+
+
+                    setTimeout(oneTwoSound, 100)
+                    setTimeout(threeFourSound, 300)
+                    setTimeout(fiveSixSound, 500)
+                    setTimeout(sevenEightSound, 700)
+                    setTimeout(nineTenSound, 900)
+                        //1_2
+                    function mulSound1() {
+
+                        document.querySelector("#auto").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto2").play()
+                            Remove1()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove1() {
+                        ultimates.style.display = "none"
+                    }
+
+                    //3_4
+                    function mulSound2() {
+                        document.querySelector("#auto3").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto4").play()
+                            Remove2()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove2() {
+                        ultimate2s.style.display = "none"
+                    }
+
+                    //5_6
+                    function mulSound3() {
+                        document.querySelector("#auto5").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto6").play()
+                            Remove3()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove3() {
+                        ultimate3s.style.display = "none"
+                    }
+                    //7_8
+                    function mulSound4() {
+                        document.querySelector("#auto7").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto8").play()
+                            Remove4()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove4() {
+                        ultimate4s.style.display = "none"
+                    }
+                    //9_10
+                    function mulSound5() {
+                        document.querySelector("#auto9").play()
+
+                        function mulSound2() {
+                            document.querySelector("#auto10").play()
+                            knight.style.display = "block"
+                            Remove5()
+                        }
+                        setTimeout(mulSound2, 300)
+                    }
+
+                    function Remove5() {
+                        ultimate5s.style.display = "none"
+                        monsters[roundNum].hp = 0
+                        flag2 = true
+                        MonsterDead()
+                        calcEnemyHPwidth()
+
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
